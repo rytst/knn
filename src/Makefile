@@ -1,7 +1,7 @@
 all: knn
 
-knn: knn.cc
-	g++ knn.cc -o knn
+knn: main.cc
+	g++ -std=c++11 main.cc -o knn
 
 clean:
 	rm knn

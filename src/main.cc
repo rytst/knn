@@ -7,8 +7,28 @@
 using namespace std;
 
 
+void read_csv(string file_name, vector<vector<float>>& data);
+void print_2d_vector(vector<vector<float>>& data);
+
+
+int main(int argc, char* argv[]) {
+    // Check CLI usage
+    if (argc != 2) {
+        cerr << "Usage: knn file.csv" << endl;
+        exit(1);
+    }
+
+    string file_name = argv[1];
+    vector<vector<float>> data;
+    read_csv(file_name, data);
+
+    print_2d_vector(data);
+
+    return 0;
+}
+
 // csv -> vector
-void read_csv(string file_name, vector<vector<float>> data) {
+void read_csv(string file_name, vector<vector<float>>& data) {
     ifstream file(file_name);
 
     if (!file.is_open()) {
@@ -32,16 +52,14 @@ void read_csv(string file_name, vector<vector<float>> data) {
     file.close();
 }
 
-int main(int argc, char* argv[]) {
-    // Check CLI usage
-    if (argc != 2) {
-        cerr << "Usage: knn file.csv" << endl;
-        exit(1);
+
+void print_2d_vector(vector<vector<float>>& data) {
+    for (int i=0; i < data.size(); i++) {
+        for (int j=0; j < data[i].size(); j++) {
+            cout << " " << data[i][j];
+        }
+        cout << endl;
     }
-
-    string file_name = argv[1];
-    vector<vector<float>> data;
-    read_csv(file_name, data);
-
-    return 0;
 }
+
+
