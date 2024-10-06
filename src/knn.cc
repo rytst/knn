@@ -32,8 +32,7 @@ void read_csv(string file_name, vector<vector<float>> data) {
     file.close();
 }
 
-int main(int argc, char* argv[])
-{
+int main(int argc, char* argv[]) {
     // Check CLI usage
     if (argc != 2) {
         cerr << "Usage: knn file.csv" << endl;
