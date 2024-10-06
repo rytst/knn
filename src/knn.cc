@@ -7,6 +7,7 @@
 using namespace std;
 
 
+// csv -> vector
 void read_csv(string file_name, vector<vector<float>> data) {
     ifstream file(file_name);
 
