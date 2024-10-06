@@ -27,7 +27,7 @@ int main(int argc, char* argv[]) {
     return 0;
 }
 
-// csv -> vector
+// csv -> 2D-vector
 void read_csv(string file_name, vector<vector<float>>& data) {
     ifstream file(file_name);
 
