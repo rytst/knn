@@ -1,24 +1,34 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
 
-void read_file(string file_name) {
-    string line;
+void read_csv(string file_name, vector<vector<float>> data) {
     ifstream file(file_name);
 
-    if (file.is_open()) {
-        while (getline(file, line)) {
-            cout << line << endl;
-        }
-        file.close();
-    } else {
+    if (!file.is_open()) {
         // When cannot read file
         cerr << "Cannot read " << file_name << endl;
         exit(1);
     }
+
+    for (string line; getline(file, line); ) {
+        istringstream ss(move(line));
+        vector<float> row;
+        if (!data.empty()) {
+            row.reserve(data.front().size());
+        }
+        for (string elem; getline(ss, elem, ','); ) {
+            float value = stof(elem);
+            row.push_back(move(value));
+        }
+        data.push_back(move(row));
+    }
+    file.close();
 }
 
 int main(int argc, char* argv[])
@@ -30,7 +40,8 @@ int main(int argc, char* argv[])
     }
 
     string file_name = argv[1];
-    read_file(file_name);
+    vector<vector<float>> data;
+    read_csv(file_name, data);
 
     return 0;
 }
