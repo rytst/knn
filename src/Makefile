@@ -1,7 +1,14 @@
+CXX=g++
+RM=rm -f
+
+TARGET := knn
+
+.PHONY: all knn clean distclean
+
 all: knn
 
 knn: main.cc
-	g++ -std=c++11 main.cc -o knn
+	$(CXX) -std=c++11 main.cc -o knn
 
-clean:
-	rm knn
+distclean:
+	$(RM) knn
