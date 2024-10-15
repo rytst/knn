@@ -61,5 +61,3 @@ void print_2d_vector(vector<vector<float>>& data) {
         cout << endl;
     }
 }
-
-
