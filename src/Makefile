@@ -7,8 +7,16 @@ TARGET := knn
 
 all: knn
 
-knn: main.cc
+knn: %.o
 	$(CXX) -std=c++11 main.cc -o knn
+
+%.o: %.cc %.hh
+	$(CXX) -std=c++11 
+
+clean:
+	$(RM) *.o
 
 distclean:
 	$(RM) knn
+
+-include $(DEPS)
