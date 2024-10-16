@@ -1,12 +1,6 @@
 #include <vector>
 #include "knn.hh"
 
-class KNN {
-    // Training data for prediction
-    vector<vector<float>> X_train;
-    vector<float>         y_train;
-public:
-    void fit(vector<vector<float>> X_train_from_user, vector<float> y_train_from_user);
+void KNN::fit(vector<vector<float>> X_train_from_user, vector<float> y_train_from_user);
 
-    vector<float> predict(vector<vector<float>> X_test_from_user);
-};
+vector<float> KNN::predict(vector<vector<float>> X_test_from_user);
