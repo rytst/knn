@@ -2,14 +2,18 @@
 
 #include <vector>
 
+using namespace std;
+
 class KNN {
+ private:
   // Training data for prediction
-  vector<vector<float>> X_train;
-  vector<float> y_train;
+  vector<vector<double>>& data;
+
+  double dist(vector<double>& x, vector<double>& y);
+  size_t searchNearest(vector<double>& x);
 
  public:
-  void fit(vector<vector<float>> X_train_from_user,
-           vector<float> y_train_from_user);
+  void setData(vector<vector<double>>& labeled_data);
 
-  vector<float> predict(vector<vector<float>> X_test_from_user);
+  vector<size_t> predict(vector<vector<double>>& test);
 };

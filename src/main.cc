@@ -6,10 +6,10 @@
 
 using namespace std;
 
-void read_csv(string file_name, vector<vector<float>>& data);
-void print_2d_vector(vector<vector<float>>& data);
+void readCsv(string file_name, vector<vector<double>> &data);
+void print_2d_vector(vector<vector<double>> &data);
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
   // Check CLI usage
   if (argc != 2) {
     cerr << "Usage: knn file.csv" << endl;
@@ -17,8 +17,8 @@ int main(int argc, char* argv[]) {
   }
 
   string file_name = argv[1];
-  vector<vector<float>> data;
-  read_csv(file_name, data);
+  vector<vector<double>> data;
+  readCsv(file_name, data);
 
   print_2d_vector(data);
 
@@ -26,7 +26,7 @@ int main(int argc, char* argv[]) {
 }
 
 // csv -> 2D-vector
-void read_csv(string file_name, vector<vector<float>>& data) {
+void readCsv(string file_name, vector<vector<double>> &data) {
   ifstream file(file_name);
 
   if (!file.is_open()) {
@@ -37,12 +37,12 @@ void read_csv(string file_name, vector<vector<float>>& data) {
 
   for (string line; getline(file, line);) {
     istringstream ss(move(line));
-    vector<float> row;
+    vector<double> row;
     if (!data.empty()) {
       row.reserve(data.front().size());
     }
     for (string elem; getline(ss, elem, ',');) {
-      float value = stof(elem);
+      double value = stof(elem);
       row.push_back(move(value));
     }
     data.push_back(move(row));
@@ -50,7 +50,7 @@ void read_csv(string file_name, vector<vector<float>>& data) {
   file.close();
 }
 
-void print_2d_vector(vector<vector<float>>& data) {
+void print_2d_vector(vector<vector<double>> &data) {
   for (int i = 0; i < data.size(); i++) {
     for (int j = 0; j < data[i].size(); j++) {
       cout << " " << data[i][j];
