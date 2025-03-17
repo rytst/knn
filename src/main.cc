@@ -7,7 +7,8 @@
 
 using namespace std;
 
-void readCsv(string file_name, vector<vector<double>> &features, vector<double>& label);
+void readCsv(string file_name, vector<vector<double>> &features,
+             vector<double> &label);
 void printVector(vector<double> &data);
 void print2dVector(vector<vector<double>> &data);
 
@@ -23,8 +24,8 @@ int main(int argc, char *argv[]) {
   vector<double> label;
   readCsv(file_name, features, label);
 
-  //printVector(label);
-  //print2dVector(features);
+  // printVector(label);
+  // print2dVector(features);
 
   vector<vector<double>> x_test;
   x_test.push_back(features[0]);
@@ -43,7 +44,8 @@ int main(int argc, char *argv[]) {
 }
 
 // csv -> vectors
-void readCsv(string file_name, vector<vector<double>> &features, vector<double> &label) {
+void readCsv(string file_name, vector<vector<double>> &features,
+             vector<double> &label) {
   ifstream file(file_name);
 
   if (!file.is_open()) {
@@ -72,8 +74,6 @@ void readCsv(string file_name, vector<vector<double>> &features, vector<double> 
   }
   file.close();
 }
-
-
 
 void printVector(vector<double> &data) {
   for (int i = 0; i < data.size(); i++) {
