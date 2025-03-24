@@ -6,7 +6,7 @@ SRC_DIRS := ./src
 
 # Find all the C and C++ files we want to compile
 # Note the single quotes around the * expressions. The shell will incorrectly expand these otherwise, but we want to send the * directly to the find command.
-SRCS := $(shell find $(SRC_DIRS) -name '*.cc' -or -name '*.c' -or -name '*.s')
+SRCS := $(shell find $(SRC_DIRS) -name '*.cpp' -or -name '*.c' -or -name '*.s')
 
 # Prepends BUILD_DIR and appends .o to every src file
 # As an example, ./your_dir/hello.cpp turns into ./build/./your_dir/hello.cpp.o
@@ -35,7 +35,7 @@ $(BUILD_DIR)/%.c.o: %.c
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
 # Build step for C++ source
-$(BUILD_DIR)/%.cc.o: %.cc
+$(BUILD_DIR)/%.cpp.o: %.cpp
 	mkdir -p $(dir $@)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
@@ -43,6 +43,9 @@ $(BUILD_DIR)/%.cc.o: %.cc
 .PHONY: clean
 clean:
 	rm -r $(BUILD_DIR)
+
+test:
+	./build/knn 3 data/train_test_data/train.csv data/train_test_data/test.csv
 
 # Include the .d makefiles. The - at the front suppresses the errors of missing
 # Makefiles. Initially, all the .d files will be missing, and we don't want those
